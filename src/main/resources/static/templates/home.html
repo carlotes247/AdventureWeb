@@ -1,0 +1,24 @@
+<!-- Carousel -->
+<div ng-controller="CarouselCtrl">
+  <div>
+    <carousel interval="myInterval">
+      <slide ng-repeat="slide in slides" active="slide.active" style = "height:50vh">
+        <img ng-src="{{slide.image}}" style="height:100%;width:100%;margin:auto;">
+        <div class="carousel-caption">
+          <h1>{{slide.text}}</h1>
+        </div>
+      </slide>
+    </carousel>
+  </div>  
+</div>
+
+<!-- Content -->
+<div class="jumbotron">  
+  <h1>Adventure Web</h1>
+  <p>The land of Aera is in danger! Join thousands of adventurers and explore an intriging and incredible land, just in your browser! <a ng-href="#/login" class="btn btn-primary btn-lg">Log In now</a> or <a ng-href="#/signUp" class="btn btn-warning btn-lg">Sign Up</a> to live you adventure. No plugins required!</p>
+</div>
+
+<div class="well">  
+  <h1>Adventure Web</h1>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Aenean lacinia bibendum nulla sed consectetur.</p>
+</div>

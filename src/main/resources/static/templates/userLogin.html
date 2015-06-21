@@ -1,0 +1,18 @@
+<div class="container" ng-controller="Controller as vm">
+<div class="well"><p>{{vm.userName}}</p><p>{{vm.password}}</p><p></p></div>
+		<form class="form-signin" ng-submit="vm.logIn(vm.userName, vm.password)">
+	        <h2 class="form-signin-heading">Please log in</h2>
+	        <label for="inputUser" class="sr-only">UserName</label>
+	        <input ng-model="vm.userName" type="text" id="inputUser" class="form-control" placeholder="User Name" required="" autofocus="">
+	        <label for="inputPassword" class="sr-only" ng-model="">Password</label>
+	        <input ng-model="vm.password" type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+	        <div class="checkbox">
+	          <label>
+	            <input type="checkbox" value="remember-me"> Remember me
+	          </label>
+	        </div>
+	        <div >
+	        <button ng-disabled="form.$invalid" class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+	        </div>
+	      </form>
+	</div>

@@ -1,0 +1,12 @@
+<div class="container" ng-controller="Controller as vm">
+<div class="well"><p>Users are: </p><p>{{vm.users}}</p><p>{{vm.userName}}</p></div>
+	<form class="form-create-user" ng-submit="vm.setUser(vm.userName,vm.password);">
+        <h2 class="form-create-user-heading">Create user</h2>
+        <label for="inputUser" class="sr-only">UserName</label>
+        <input ng-model="vm.userName" type="text" id="inputUser" class="form-control" placeholder="User Name" required="" autofocus="">
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input ng-model="vm.password" type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+        
+        <button  class="btn btn-lg btn-primary btn-block" type="submit" value"Submit User">Create User</button>
+      </form>
+</div>

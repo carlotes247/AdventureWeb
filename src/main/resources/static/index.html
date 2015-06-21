@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Index</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<!-- Latest compiled and minified Bootstrap JavaScript -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-resource.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-route.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-touch.min.js"></script>
+<!-- Angular-UI bootstrap library -->
+<script src="ui-bootstrap-tpls-0.13.0.min.js"></script>
+<!-- Angular Audio module -->
+<script src='angular.audio.js'></script>
+
+<!-- My CSS -->
+<link rel="stylesheet" href="style.css" type="text/css">
+
+<!-- Angular JS code -->
+<script src="./app/app.js"></script>
+<script src="./app/controller.js"></script>
+<script src="./app/usersService.js"></script>
+<script src="./app/routeConfig.js"></script>
+<script src="./app/appDirectives.js"></script>
+<script src="./app/CarouselCtrl.js"></script>
+<script src="./app/audioCtrl.js"></script>
+<script src="./app/dropdownCtrl.js"></script>
+<script src="./app/routeCtrl.js"></script>
+<script src="./app/testService.js"></script>
+<script src="./app/testCtrl.js"></script>
+
+
+
+</head>
+<body ng-app="app">
+
+<!-- Fixed navbar -->
+<nav-bar></nav-bar>
+
+<div class="well" ng-controller="testCtrl as vm">
+	awufvbscikdevb {{vm.users}}
+</div>
+
+	<div class="container" id="body"></div>
+
+<!-- Footer -->
+<footer-directive></footer-directive>
+</body>
+
+</html>

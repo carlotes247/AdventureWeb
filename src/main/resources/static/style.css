@@ -1,0 +1,49 @@
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+  background-image: url(http://static.tumblr.com/711ef574aabd990eee32588be528f7f2/6ju1euh/WSYnnbwed/tumblr_static_cku5p4mtnmoggw0ck04w4gg0c.jpg); 
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding-top: 60px;
+ 
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
+}
+
+@media (max-width: 767px) {
+
+    .visible-xs.collapse.in {
+        display: block!important;
+    }
+    .visible-xs.collapse {
+        display: none!important;
+    }
+
+    body { padding-top: 0px; }
+
+}
+
+.navbar .collapse {
+    border-top: 1px solid #e7e7e7;
+    margin-left: -15px;
+    margin-right: -15px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.textureBack { 
+	background-image: url(http://www.webtexture.net/wp-content/gallery/20-seamless-paper-texture/papar_texture_thumb04.jpg);
+}
