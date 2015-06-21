@@ -7,12 +7,18 @@ UsersService.$inject = ["$resource"];
 	
 	vm.test = "this is a TEEEEEEEEST";
 	this.users = [];
+	vm.passwordToUse;
 
 	this.getNumber = function () {
 		return "2";
 	}
 	
 	var UserResource = $resource('users/:id',
+			{id : '@id'},
+			{update : {method : "PUT"}}
+	);
+
+	var UserResource02 = $resource('users/:id/1',
 			{id : '@id'},
 			{update : {method : "PUT"}}
 	);
@@ -25,6 +31,25 @@ UsersService.$inject = ["$resource"];
 	this.getUser = function (userName) {
 		user = UserResource.get({id:userName});
 		return user;
+	}
+
+	this.getUserName = function(userName) {
+		userName = UserResource.get({id:userName}, function(value) {
+			return value.userName;
+		});
+		return userName;
+	}
+
+	this.getPassword = function(userName) {
+		/*var userPass = UserResource02.get({id:userName});*/
+		var userPass;
+		/*$http.get('users/' + userName).success(function(response) {
+			console.log(response.password);
+			vm.passwordToUse = response.password;
+		})*/
+		userPass = UserResource.get({id:userName});
+		console.log(userPass);
+		return userPass;
 	}
 	
 	this.newUser = function(newUser) {

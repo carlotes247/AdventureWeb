@@ -27,6 +27,11 @@ public class UserRestController {
 		return usersService.getUser(userName);
 	}
 	
+	@RequestMapping(value = "/users/{userName}/{password}", method = RequestMethod.GET)
+	public String getUserPassword(@PathVariable("userName") String userName, @PathVariable("password") String password) {
+		return "{\"" + usersService.getUserPassword(userName, password) + "\"}";
+	}
+	
 	@RequestMapping(value = "/users", method = RequestMethod.POST)
 	public ResponseEntity<Boolean> addUser(@RequestBody User user) {
 		usersService.addUser(user);

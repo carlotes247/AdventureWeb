@@ -49,6 +49,12 @@ public class UsersService implements CommandLineRunner{
 		return aux;
 	}
 	
+	public String getUserPassword(String userName, String password) {
+		User aux = getUser(userName);
+		System.out.println("The user password is: " + aux.getPassword());
+		return aux.getPassword();
+	}
+	
 	public void addUser(User user) {
 		if (getUsers() == null) {
 			userRepo.save(new ArrayList<User>());
