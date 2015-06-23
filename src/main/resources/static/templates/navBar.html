@@ -1,17 +1,20 @@
 <!-- Fixed navbar -->
 <nav class="navbar navbar-default navbar-fixed-top textureBack" ng-controller="AudioCtrl">
-  <div class="container" ng-repeat="audio in [audio1]">
+  <div class="container" ng-repeat="audio in [audio1]" ng-controller="navBarCtrl as nv">
   {{audio.play()}}
     <div class="navbar-header">
+    {{nv.loggedIn}}
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-3" ng-click="isCollapsed = !isCollapsed" volume-hover="0.2" ng-audio-hover="audio/button-4.mp3">
               <span class="sr-only">Toggle navigation</span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-      <a class="navbar-brand visible-xs" ng-href="/#/">Adventure Web</a>
+      <a class="navbar-brand visible-xs" ng-href="/#/" ng-hide="nv.loggedIn">Adventure Web</a>
+
     </div>
-    <nav class="hidden-xs">
+    <!-- THIS IS THE NAVBAR CONTENT WHEN LOGGED OUT-->
+    <nav class="hidden-xs" ng-hide="nv.loggedIn">
             <ul class="nav navbar-nav">
               <a ng-href="#/" role="button" class="navbar-brand" volume-hover="0.2" ng-audio-hover="audio/button-4.mp3" ng-audio="audio/button-3.mp3">
                   Adventure Web
@@ -26,15 +29,42 @@
                     <input class='form-control' type=range min=0 max=1 step=0.01 ng-model='audio.volume'>
                   </ul>
               </li>
+              <li><button type="button" class="btn btn-info" ng-click="nv.updateLoggedIn()">Update NavBar vars</button></li>
                            
             </ul>
             <ul class="nav navbar-nav pull-right">
               <li><a ng-href="#/login" class="pull-right" volume-hover="0.2" ng-audio-hover="audio/button-4.mp3" ng-audio="audio/button-3.mp3">Log In</a></li>
-              <li><a ng-href="#/signUp" type="button" class="btn btn-warning" volume-hover="0.2" ng-audio-hover="audio/button-4.mp3">
+              <li class="centered"><button ng-controller="RouteCtrl as rt" ng-click="rt.go('/signUp')" type="button" class="btn btn-warning" volume-hover="0.2" ng-audio-hover="audio/button-4.mp3">
               <span class="glyphicon glyphicon-plus" aria-hidden="true" ></span> Sign Up
-              </a></li> 
+              </button></li> 
             </ul>
           </nav>
+
+          <!-- THIS IS THE NAVBAR CONTENT WHEN LOGGED IN-->
+          <nav class="hidden-xs" ng-show="nv.loggedIn">
+            <ul class="nav navbar-nav">
+              <a ng-href="#/" role="button" class="navbar-brand" volume-hover="0.2" ng-audio-hover="audio/button-4.mp3" ng-audio="audio/button-3.mp3">
+                  Adventure Web
+              </a>
+              <li><a ng-href="#/" volume-hover="0.2" ng-audio-hover="audio/button-4.mp3" ng-audio="audio/button-3.mp3">Player</a></li>
+              <li><a ng-href="#/about" volume-hover="0.2" ng-audio-hover="audio/button-4.mp3" ng-audio="audio/button-3.mp3">How To Play</a></li>
+              <li dropdown dropdown-append-to-body>
+                <a volume-hover="0.2" ng-audio-hover="audio/button-4.mp3" ng-audio="audio/button-3.mp3" class="dropdown-toggle" dropdown-toggle>
+                <span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span> Volume <span class="caret"></span>            
+                </a>
+                  <ul class="dropdown-menu" role="menu">
+                    <input class='form-control' type=range min=0 max=1 step=0.01 ng-model='audio.volume'>
+                  </ul>
+              </li>
+              <li><button type="button" class="btn btn-info" ng-click="nv.updateLoggedIn()">Update NavBar vars</button></li>
+                           
+            </ul>
+            <ul class="nav navbar-nav pull-right">
+              <li><a ng-href="#/login" class="pull-right" volume-hover="0.2" ng-audio-hover="audio/button-4.mp3" ng-audio="audio/button-3.mp3">Log Out</a></li>
+            </ul>
+          </nav>
+
+          <!-- THIS IS THE RESPONSIVE NAVBAR CONTENT WHEN LOGGED OUT -->
           <nav class="visible-xs" collapse="!isCollapsed">
               <ul class="nav navbar-nav">                              
                   <li class="divider"></li>
@@ -49,5 +79,7 @@
               </ul>
               </ul>
           </nav>
+
+
   </div>
 </nav>

@@ -1,12 +1,12 @@
 angular.module("app").controller("RouteCtrl", RouteCtrl);
 
-RouteCtrl.$inject = [ "$location"];
+RouteCtrl.$inject = [ "$location" , "$timeout"];
 
-function RouteCtrl ($location) {
+function RouteCtrl ($location, $timeout) {
 
 		var vm = this;
 
 		vm.go = function(x) {
-		$location.path(x);
-	}
+			$timeout(function() {$location.path(x);}, 500);
+		}
 }

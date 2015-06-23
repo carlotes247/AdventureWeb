@@ -53,12 +53,15 @@ UsersService.$inject = ["$resource"];
 	}
 	
 	this.newUser = function(newUser) {
+		console.log("newUser called");
 		new UserResource(newUser).$save(function(user) {
 			vm.users.push(user);
+			console.log("newUser created!");
 		});
 	}
 	
-	this.updateUser = function(updatedUser) {
+	this.updateUser = function() {
+		console.log("UPDATING USER IN SERVER...");
 		updatedUser.$update();
 	}
 	

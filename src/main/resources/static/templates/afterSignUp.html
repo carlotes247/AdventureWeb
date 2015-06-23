@@ -1,0 +1,19 @@
+<div class="well">
+<p>This is after Sign Up!</p>
+	{{vm.user}}
+	<p>User shared is: {{vm.userShared}}</p>
+	<p>{{vm.equals(vm.user.userName, vm.userShared.userName)}}</p>
+	<div class="jumbotron" ng-if="!vm.equals(vm.user.userName, vm.userShared.userName)">
+		<div class="container" ng-controller="RouteCtrl as rt">
+			<h1>Welcome, {{vm.user.userName}}!</h1>
+			<p>You have created your account succesfully!</p>
+			<p>
+				<a class="btn btn-primary btn-lg" ng-controller="RouteCtrl as rt">{{vm.setUserOnce(vm.userShared.userName, vm.userShared.password)}}</a>
+			</p>
+		</div>
+	</div>
+	<div class="jumbotron" ng-if="vm.equals(vm.user.userName, vm.userShared.userName)" ng-controller="RouteCtrl as rt">
+	{{rt.go('/signUp/Error')}}
+	</div>
+	</div>
+</div>

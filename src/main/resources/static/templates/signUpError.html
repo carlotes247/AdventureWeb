@@ -1,0 +1,26 @@
+<form name="myForm" class="form-signin" ng-submit="vm.setUserShared(vm.userName, vm.password);rt.go('/afterSignUp/' + vm.userName)" ng-controller="RouteCtrl as rt">
+        <h2 class="form-signin-heading">Please Sign Up</h2>
+
+        <label for="inputUser" class="sr-only">UserName</label>
+        <input ng-model="vm.userName" type="text" name="user" id="inputUser" class="form-control" placeholder="User Name" required="" autofocus="">
+        <span class="alert-danger" ng-show="myForm.user.$dirty && myForm.user.$invalid">
+		<span ng-show="myForm.user.$error.required"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Username is required.</span>
+		</span>
+
+        <label for="inputPassword" class="sr-only" >Password</label>
+        <input name="password" ng-model="vm.password" type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+        <span class="alert-danger" role="alert" ng-show="myForm.password.$dirty && myForm.password.$invalid">
+		<span ng-show="myForm.password.$error.required"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Password is required.</span>
+		</span>
+        <div class="alert alert-danger" role="alert">
+		  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		  <span class="sr-only">Error:</span>
+		  The user already exists.
+		  <div class="alert alert-warning alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> Try adding numbers at the end of your user or choosing a different name.
+			</div>
+		</div>
+        <div >
+        <button class="btn btn-lg btn-primary btn-block" type="submit" value="Submit User" ng-value="myForm.user.$valid && myForm.password.$valid">Create user {{vm.userName}}</button>
+      </form>

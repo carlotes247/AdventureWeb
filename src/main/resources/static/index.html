@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Index</title>
+<title>Adventure Web</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 <!-- Latest compiled and minified Bootstrap JavaScript -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -15,6 +15,10 @@
 <script src="ui-bootstrap-tpls-0.13.0.min.js"></script>
 <!-- Angular Audio module -->
 <script src='angular.audio.js'></script>
+<!-- Angular Timer module -->
+<script src='angular-timer-all.min.js'></script>
+<!-- The humanize module that timer requieres -->
+
 
 <!-- My CSS -->
 <link rel="stylesheet" href="style.css" type="text/css">
@@ -31,19 +35,22 @@
 <script src="./app/routeCtrl.js"></script>
 <script src="./app/testService.js"></script>
 <script src="./app/testCtrl.js"></script>
-
-
+<script src="./app/userSharedDataService.js"></script>
+<script src="./app/timerCtrl.js"></script>
+<script src="./app/navBarCtrl.js"></script>
 
 </head>
 <body ng-app="app">
 
-<!-- Fixed navbar -->
-<nav-bar></nav-bar>
+	<!-- Fixed navbar -->
+	<nav-bar></nav-bar>
 
+	<!-- The main view of the web -->
 	<div class="container" id="body" ng-view></div>
 
-<!-- Footer -->
-<footer-directive></footer-directive>
+	<!-- Footer -->
+	<footer-directive></footer-directive>
+
 </body>
 
 </html>

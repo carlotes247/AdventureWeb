@@ -2,8 +2,10 @@
 	<div class="container">
 		<h2>User created!</h2>
 		<p>You have succesfully created a new user! Now, you can go to the <a ng-href="#/login">Log In</a> page and start your adventure!</p>
+		<p>The users are: </p>
+		{{vm.users}}
 		<p>
-			<a ng-href="#/login" class="btn btn-primary btn-lg">Log In</a>
+			<button type="button" class="btn btn-primary" ng-controller="RouteCtrl as rt" ng-click="rt.go('/login')">Log In</button> </a>
 		</p>
 	</div>
 </div>

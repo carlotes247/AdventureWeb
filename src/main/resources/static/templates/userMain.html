@@ -1,0 +1,12 @@
+<div class="well" ng-if="!vm.userShared.userName" ng-controller="RouteCtrl as rt">{{rt.go('/login')}}</div>
+<div class="jumbotron">
+		<div class="container">
+			<h1>Welcome back, {{vm.userShared.userName}}!</h1>
+			<p>You have logged in succesfully! Start your adventure!</p>
+			<p>
+				<a class="btn btn-primary btn-lg">Learn more</a>
+			</p>
+			<button type="button" class="btn btn-primary" ng-click="vm.addGold(1)">Add 1 Gold</button>
+			The gold is: {{vm.gold}}
+		</div>
+</div>

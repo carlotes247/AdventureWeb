@@ -1,0 +1,8 @@
+<div ng-controller="RouteCtrl as rt">
+	<div ng-if="vm.equals(vm.user.password, vm.userShared.password)" >
+		{{rt.go('/userMain')}}
+	</div>
+	<div ng-if="!vm.equals(vm.user.password, vm.userShared.password)">
+		{{rt.go('/loginError')}}
+	</div>
+</div>

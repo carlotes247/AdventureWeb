@@ -27,16 +27,35 @@ public class UserRestController {
 		return usersService.getUser(userName);
 	}
 	
+	@RequestMapping(value = "/users/{userName}", method = RequestMethod.PUT)
+	public User updateUser(@PathVariable("userName") String userName) {
+		return usersService.getUser(userName);
+	}
+	
 	@RequestMapping(value = "/users/{userName}/{password}", method = RequestMethod.GET)
 	public String getUserPassword(@PathVariable("userName") String userName, @PathVariable("password") String password) {
 		return "{\"" + usersService.getUserPassword(userName, password) + "\"}";
 	}
 	
 	@RequestMapping(value = "/users", method = RequestMethod.POST)
-	public ResponseEntity<Boolean> addUser(@RequestBody User user) {
-		usersService.addUser(user);
+	public ResponseEntity<Boolean> addUser(@RequestBody User user) {		
 		
-		return new ResponseEntity<Boolean>(true, HttpStatus.CREATED);
+		String auxNameToCompare = usersService.getUser(user.getUserName()).getUserName();
+		
+		if (auxNameToCompare == null) {
+			auxNameToCompare = "";
+		}
+		
+		if (auxNameToCompare.contains(user.getUserName())) {
+			System.out.println("The user " + user.getUserName() + " already exists!");
+			return new ResponseEntity<Boolean>(false, HttpStatus.CREATED);
+		} else {
+			usersService.addUser(user);
+			System.out.println("The user " + auxNameToCompare + " was added!");
+			System.out.println(auxNameToCompare.contains(user.getUserName()));
+			return new ResponseEntity<Boolean>(true, HttpStatus.CREATED);
+		}
+		
 	}
 
 }
