@@ -22,6 +22,14 @@ public class User {
 	private String info;
 	private float gold;
 
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	public String getInfo() {
 		return info;
 	}
@@ -55,6 +63,7 @@ public class User {
 	}
 	
 	public void setAllUser (User user) {
+		setId(user.getId());
 		setUserName(user.getUserName());
 		setPassword(user.getPassword());
 		setInfo(user.getInfo());

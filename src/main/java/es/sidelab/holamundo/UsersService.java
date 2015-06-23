@@ -25,9 +25,8 @@ public class UsersService implements CommandLineRunner{
 		return numUsers;
 	}
 	
-	private List<User> FindUser (String userName) {
+	private User FindUser (String userName) {
 		User aux = new User();
-		List<User> auxList = new ArrayList<User>();
 		System.out.println("The query is: " + userName);
 		for (User user : getUsers()) {
 			if (user.getUserName().equals(userName)) {
@@ -35,21 +34,21 @@ public class UsersService implements CommandLineRunner{
 				//aux.setUserName(user.getUserName());
 				//aux.setPassword(user.getPassword());
 				aux.setAllUser(user);
-				auxList.add(aux);
 			}
 		}
 		
-		return (List<User>) auxList;
+		return aux;
 	}
+	
 	
 	public List<User> getUsers() {
 		return (List<User>) userRepo.findAll();
 	}
 	
-	public List<User> getUser(String userName) {
-		List<User> aux = FindUser(userName);
-		System.out.println("The user is: " + aux.get(0).getUserName());
-		return (List<User>) aux;
+	public User getUser(String userName) {
+		User aux = FindUser(userName);
+		System.out.println("The user is: " + aux.getUserName());
+		return aux;
 	}
 	
 	public String getUserPassword(String userName, String password) {
@@ -71,16 +70,31 @@ public class UsersService implements CommandLineRunner{
 	
 	public void updateUser (User user) {
 		User aux = new User();
+		List<User> auxList = getUsers();
 		if (getUser(user.getUserName()).getUserName() != null) {
 			aux = getUser(user.getUserName());
+			//auxList.add(user);
 		}
 		//deleteUser(getUser(user.getUserName()));
 		aux.setAllUser(user);
-		userRepo.delete(getUsers());
+		DeleteAllExceptOne(user.getUserName(), auxList);
+		userRepo.delete(auxList);
 		//userRepo.deleteAll();
 		userRepo.save(aux);
 	}
-
+	
+	private List<User> DeleteAllExceptOne (String userName, List<User> listToPrepare) {
+		for (User user : listToPrepare) {
+			if (user.getUserName().equals(userName)) {
+				// DO NOTHING
+			} else {
+				listToPrepare.remove(user);
+			}
+		}
+		
+		return listToPrepare;
+	}
+	
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
