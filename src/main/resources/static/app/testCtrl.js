@@ -145,12 +145,17 @@ function testCtrl(usersService, testResolve, usersSharedDataService, $interval, 
 	vm.updateLoggedIn = function() {
 		if (vm.currentPath === '/userMain') {
 			vm.setLoggedIn(true);
+			vm.updateSharedGold();
 			console.log("THE ROUTE IS THE SAME");
 		} else {
 			vm.setLoggedIn(false);
 		}
 		console.log(vm.loggedIn);
 	}	
+
+	vm.updateSharedGold = function() {
+		usersSharedDataService.getGoldFromServer();
+	}
 
 
 	// Logic

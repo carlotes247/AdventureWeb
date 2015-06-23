@@ -22,6 +22,16 @@ UsersService.$inject = ["$resource"];
 			{id : '@id'},
 			{update : {method : "PUT"}}
 	);
+
+	this.prepareInputAsUser = function (x, y, z) {
+		userToReturn = {
+			"userName" : x,
+			"password" : y,
+			"gold" : z
+		}
+
+		return userToReturn;
+	}
 	
 	this.getUsers = function () {
 		users = UserResource.query();
@@ -60,9 +70,15 @@ UsersService.$inject = ["$resource"];
 		});
 	}
 	
-	this.updateUser = function() {
+	this.updateUser = function(x, y, z) {
 		console.log("UPDATING USER IN SERVER...");
-		updatedUser.$update();
+		userToUpdate = vm.prepareInputAsUser(x, y, z);
+		console.log("The user update info is ==> ");
+		console.log(userToUpdate);
+		new UserResource(userToUpdate).$update(function(user) {
+			vm.users.push(user);
+			console.log(x + " updated!");
+		});
 	}
 	
 	this.deleteUser = function(user) {

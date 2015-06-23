@@ -77,22 +77,35 @@ public class UsersService implements CommandLineRunner{
 		}
 		//deleteUser(getUser(user.getUserName()));
 		aux.setAllUser(user);
-		DeleteAllExceptOne(user.getUserName(), auxList);
-		userRepo.delete(auxList);
+		List<User> auxListToDelete = new ArrayList<User>();
+		try {
+			auxListToDelete = new ArrayList<User>(DeleteAllExceptOne(user.getUserName(), auxList));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		userRepo.delete(auxListToDelete);
 		//userRepo.deleteAll();
 		userRepo.save(aux);
 	}
 	
-	private List<User> DeleteAllExceptOne (String userName, List<User> listToPrepare) {
-		for (User user : listToPrepare) {
-			if (user.getUserName().equals(userName)) {
-				// DO NOTHING
-			} else {
-				listToPrepare.remove(user);
+	private List<User> DeleteAllExceptOne (String userName, List<User> listToPrepare) throws Exception {
+		List<User> copyToReturn = new ArrayList<User>(listToPrepare);
+		if (listToPrepare == null || listToPrepare.isEmpty()) {
+			throw new Exception("The list to delete is empty or null");
+		} else {
+			for (User user : listToPrepare) {
+				if (user.getUserName().equals(userName)) {
+					// DO NOTHING
+					System.out.println("NOT removing from the copyToReturn: " + user.getUserName().toString());
+				} else {
+					System.out.println("Removing from the copyToReturn: " + user.getUserName().toString());
+					copyToReturn.remove(user);
+				}
 			}
+			
+			return copyToReturn;
 		}
-		
-		return listToPrepare;
 	}
 	
 	@Override

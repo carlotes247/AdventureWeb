@@ -1,6 +1,6 @@
 angular.module("app").service("usersSharedDataService", UsersSharedDataService);
 
-UsersSharedDataService.$inject = ["usersService"];
+UsersSharedDataService.$inject = ["usersService" ];
 
 function UsersSharedDataService (usersService) {
 	var vm = this;
@@ -47,7 +47,14 @@ function UsersSharedDataService (usersService) {
 		console.log("SETTING SHARED GOLD -> " + x);
 		vm.gold = x;
 		console.log("AND THE SHARED GOLD IS -> " + vm.gold);
-		vm.updateUserInServer();
+		aux = x % 10;
+		console.log("The MOD value is: " + aux);
+		if (aux === 0) {
+			vm.updateUserInServer();
+			console.log("AND NOW ON THE SERVER!!! :D ");
+
+		};
+		
 	}
 
 	vm.getGold = function() {
@@ -60,7 +67,12 @@ function UsersSharedDataService (usersService) {
 	}
 
 	vm.updateUserInServer = function() {
-		usersService.updateUser();
+		usersService.updateUser(vm.userShared.userName, vm.userShared.password, vm.gold);
+	}
+
+	vm.getGoldFromServer = function() {
+		var aux = usersService.getUser(vm.userShared.userName);
+		vm.gold = aux.gold;
 	}
 
 
