@@ -27,11 +27,6 @@ public class UserRestController {
 		return usersService.getUser(userName);
 	}
 	
-	@RequestMapping(value = "/users/{userName}", method = RequestMethod.PUT)
-	public User updateUser(@PathVariable("userName") String userName) {
-		return usersService.getUser(userName);
-	}
-	
 	@RequestMapping(value = "/users/{userName}/{password}", method = RequestMethod.GET)
 	public String getUserPassword(@PathVariable("userName") String userName, @PathVariable("password") String password) {
 		return "{\"" + usersService.getUserPassword(userName, password) + "\"}";
@@ -54,6 +49,27 @@ public class UserRestController {
 			System.out.println("The user " + auxNameToCompare + " was added!");
 			System.out.println(auxNameToCompare.contains(user.getUserName()));
 			return new ResponseEntity<Boolean>(true, HttpStatus.CREATED);
+		}
+		
+	}
+	
+	@RequestMapping(value = "/users", method = RequestMethod.PUT)
+	public ResponseEntity<Boolean> updateUser(@RequestBody User user) {		
+		
+		String auxNameToCompare = usersService.getUser(user.getUserName()).getUserName();
+		
+		if (auxNameToCompare == null) {
+			auxNameToCompare = "";
+		}
+		
+		if (auxNameToCompare.contains(user.getUserName())) {
+			System.out.println("The user " + user.getUserName() + " was found! Updating...");
+			usersService.updateUser(user);
+			return new ResponseEntity<Boolean>(true, HttpStatus.CREATED);
+		} else {
+			System.out.println("The user " + auxNameToCompare + " doesn't existss! Aborting update.");
+			System.out.println(auxNameToCompare.contains(user.getUserName()));
+			return new ResponseEntity<Boolean>(false, HttpStatus.CREATED);
 		}
 		
 	}

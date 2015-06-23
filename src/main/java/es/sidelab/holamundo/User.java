@@ -20,6 +20,7 @@ public class User {
 	private String userName;
 	private String password;
 	private String info;
+	private float gold;
 
 	public String getInfo() {
 		return info;
@@ -43,6 +44,21 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public float getGold() {
+		return gold;
+	}
+
+	public void setGold(float gold) {
+		this.gold = gold;
+	}
+	
+	public void setAllUser (User user) {
+		setUserName(user.getUserName());
+		setPassword(user.getPassword());
+		setInfo(user.getInfo());
+		setGold(user.getGold());
 	}
 	
 	

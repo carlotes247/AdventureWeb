@@ -25,28 +25,31 @@ public class UsersService implements CommandLineRunner{
 		return numUsers;
 	}
 	
-	private User FindUser (String userName) {
+	private List<User> FindUser (String userName) {
 		User aux = new User();
+		List<User> auxList = new ArrayList<User>();
 		System.out.println("The query is: " + userName);
 		for (User user : getUsers()) {
 			if (user.getUserName().equals(userName)) {
 				
-				aux.setUserName(user.getUserName());
-				aux.setPassword(user.getPassword());
+				//aux.setUserName(user.getUserName());
+				//aux.setPassword(user.getPassword());
+				aux.setAllUser(user);
+				auxList.add(aux);
 			}
 		}
 		
-		return aux;
+		return (List<User>) auxList;
 	}
 	
 	public List<User> getUsers() {
 		return (List<User>) userRepo.findAll();
 	}
 	
-	public User getUser(String userName) {
-		User aux = FindUser(userName);
-		System.out.println("The user is: " + aux.getUserName());
-		return aux;
+	public List<User> getUser(String userName) {
+		List<User> aux = FindUser(userName);
+		System.out.println("The user is: " + aux.get(0).getUserName());
+		return (List<User>) aux;
 	}
 	
 	public String getUserPassword(String userName, String password) {
@@ -60,6 +63,22 @@ public class UsersService implements CommandLineRunner{
 			userRepo.save(new ArrayList<User>());
 		}
 		userRepo.save(user);
+	}
+	
+	public void deleteUser(User user) {
+		userRepo.delete(user);
+	}
+	
+	public void updateUser (User user) {
+		User aux = new User();
+		if (getUser(user.getUserName()).getUserName() != null) {
+			aux = getUser(user.getUserName());
+		}
+		//deleteUser(getUser(user.getUserName()));
+		aux.setAllUser(user);
+		userRepo.delete(getUsers());
+		//userRepo.deleteAll();
+		userRepo.save(aux);
 	}
 
 	@Override
