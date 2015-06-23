@@ -15,21 +15,6 @@ function RouteConfig($routeProvider) {
 			testResolve: function(usersService, imagesService) {
 				var users = usersService.getUsers();
 				
-				imagesService.newImage({
-					"imageName" : "firstSlide",
-					"image" : "http://digital-art-gallery.com/oid/38/1200x600_8004_Medieval_interlude_4_2d_fantasy_landscape_adventure_picture_image_digital_art.jpg",
-					"imageDescription" : "Have amazing adventures!"
-				});
-				imagesService.newImage({
-					"imageName" : "secondSlide",
-					"image" : "https://ajcarlisle.files.wordpress.com/2014/03/stevenss-epic-fantasy-criteria-transformative-tales-whendell-deviant-art1.jpg",
-					"imageDescription" : "Explore misterious lands!"
-				});
-				imagesService.newImage({
-					"imageName" : "thirdSlide",
-					"image" : "https://allthingsmundane.files.wordpress.com/2010/04/treasure.jpg",
-					"imageDescription" : "Find incredible treasures!"
-				});
 				var images = imagesService.getImages();
 				console.log(images);
 				return this;

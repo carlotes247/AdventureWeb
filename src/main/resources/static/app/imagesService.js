@@ -75,7 +75,7 @@ ImagesService.$inject = ["$resource" , "$timeout"];
 	}
 
 	vm.getImagesWithTimeout = function() {
-		$timeout(function() {
+		timeoutGetImages = $timeout(function() {
 	      vm.images = vm.getImages();
 	      console.log("getImagesFromService called! The images are: ");
 	      console.log(vm.getImages());
@@ -88,6 +88,13 @@ ImagesService.$inject = ["$resource" , "$timeout"];
 	      console.log(vm.images[0]);
 
 	    }, 500);
+	}
+
+	vm.stopGetImageTimeout = function() {
+		if (angular.isDefined(timeoutGetImages)) {
+            $interval.cancel(timeoutGetImages);
+            timeoutGetImages = undefined;
+          }
 	}
 
 
@@ -108,6 +115,7 @@ ImagesService.$inject = ["$resource" , "$timeout"];
 	});
 
 	vm.getImagesWithTimeout();
+
 	//vm.bla();
 	//vm.newImage({"imageName":"Pepe", "password":"2"});
 	//vm.images = vm.getImages();

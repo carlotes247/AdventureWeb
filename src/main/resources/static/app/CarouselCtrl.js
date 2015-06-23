@@ -17,7 +17,7 @@ function CarouselCtrl ($scope, imagesService, $timeout) {
   };
 
   getImagesFromService = function() {
-    $timeout(function() {
+    timeout1 = $timeout(function() {
       $scope.images = imagesService.images;
       console.log("getImagesFromService called! The images are: ");
       console.log($scope.images);
@@ -26,7 +26,7 @@ function CarouselCtrl ($scope, imagesService, $timeout) {
   }
 
   addImagesToSlides = function() {
-    $timeout(function() {
+    timeout2 = $timeout(function() {
      
       var image0 = $scope.images[0];
       var image1 = $scope.images[1];
@@ -40,13 +40,29 @@ function CarouselCtrl ($scope, imagesService, $timeout) {
       $scope.addSlide(image1.image, image1.imageDescription);
       $scope.addSlide(image2.image, image2.imageDescription);
       
-    }, 1500);
+    }, 1000);
+  }
+
+  stopTimeOuts = function(){
+    if (angular.isDefined(timeout1)) {
+      $timeout.cancel(timeout1);
+      timeout1 = undefined;
+    }
+    if (angular.isDefined(timeout2)) {
+      $timeout.cancel(timeout2);
+      timeout2 = undefined;
+    }
   }
 
   getImagesFromService();
   //console.log(imagesService.getImages());
 
   addImagesToSlides();
+
+  $scope.$on('$destroy', function() {
+      // Make sure that the interval is destroyed too
+      stopTimeOuts();
+  });
 
   /*$scope.addSlide(images[0].image, image[0].imageDescription);
   $scope.addSlide(images[1].image, image[1].imageDescription);
