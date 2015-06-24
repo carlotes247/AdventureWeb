@@ -1,17 +1,25 @@
 <!-- We check if for any reason we have logged out -->
-<div class="well" ng-if="!vm.userShared.userName" ng-controller="RouteCtrl as rt">{{rt.go('/login')}}</div>
+<div ng-if="!vm.userShared.userName" ng-controller="RouteCtrl as rt">{{rt.go('/login')}}</div>
 <!-- The main view of our player! -->
-<div class="jumbotron">
+<div class="jumbotron" ng-controller="AudioCtrl">
 		<div class="container">
 			<h1>Welcome back, {{vm.userShared.userName}}!</h1>
-			<p>You have logged in succesfully! Start your adventure!</p>
-			<p>
-				<a class="btn btn-primary btn-lg">Learn more</a>
-			</p>
-			<button type="button" class="btn btn-primary" ng-click="vm.addGold(1)">Add 1 Gold</button>
-			The gold is: {{vm.gold}}
+			<p>This is your player sheet! Start your adventure!</p>
+
+			<p>You can always work hard and ask for Gold in the street... </p>
+			
+			<p></p>
+			<p><button type="button" class="btn btn-primary" ng-click="vm.addGold(1)" volume-hover="0.2" ng-audio-hover="audio/button-4.mp3" ng-audio="audio/button-3.mp3">Ask for 1 Gold</button></p>
+			
+			
 		</div>
+		<p>Or you can try and live and adventure!</p>
 
 		<modal-directive></modal-directive>
+
+	    <h3 ng-model="vm.showEventResult" ng-show="vm.showEventResult" class="alert alert-info">{{vm.showEventResult}}<h3>
+
+	    <p>The gold is: {{vm.gold}} <span class="glyphicon glyphicon-ruble" aria-hidden="true"></p>
+
 
 </div>

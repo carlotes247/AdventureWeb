@@ -1,0 +1,25 @@
+<div class="well">
+	<div class="panel panel-default" >
+        <!-- Default panel contents -->
+        <div class="panel-heading">
+        <h1><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ranking of Players</h1>
+        </div>
+                <div class="panel-body">
+                    <p>These are all the players that you can compete with! See who's having more gold right now!</p>
+                </div>
+        
+                <!-- Table -->
+                <table class="table" ng-repeat="user in vm.users | orderBy: '-gold'">
+                    <thead>
+                        <tr>
+                            <th><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Player: {{ user.userName }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="glyphicon glyphicon-ruble" aria-hidden="true"></span> Gold: {{ user.gold }}  </td>
+                        </tr>
+                    </tbody>
+                </table>
+        </div>
+</div>

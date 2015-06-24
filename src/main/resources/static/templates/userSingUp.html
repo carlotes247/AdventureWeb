@@ -1,5 +1,4 @@
-<div class="container jumbotron">
-<div class="well"><p>Users are: </p><p>{{vm.users}}</p><p>{{vm.userName}}</p></div>
+<div class="container well">
 	<form class="form-create-user" ng-controller="RouteCtrl as rt" ng-submit="vm.setUserShared(vm.userName, vm.password);rt.go('/afterSignUp/' + vm.userName)" name="myForm">
         <h2 class="form-create-user-heading">Create user</h2>
 

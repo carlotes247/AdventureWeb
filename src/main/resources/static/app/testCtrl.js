@@ -19,6 +19,7 @@ function testCtrl(usersService, testResolve, usersSharedDataService, $interval, 
 	vm.gold = usersSharedDataService.getGold();
 	vm.loggedIn = usersSharedDataService.getLoggedIn();
 	vm.currentPath = $location.path();
+	vm.showEventResult = "";
 
 	//This var is for having a reference to the interval and stopping it correctly
 	var addingGoldInterval;
@@ -106,6 +107,9 @@ function testCtrl(usersService, testResolve, usersSharedDataService, $interval, 
 			console.log("Adding gold...");
 			//auxGold = vm.gold;
 			vm.gold += gold;
+			if (vm.gold < 0) {
+				vm.gold = 0;
+			};
 			usersSharedDataService.setGold(vm.gold);
 		} else {
 			console.log("Can't add gold! LogStatus: " + vm.getLoggedIn());
@@ -179,7 +183,7 @@ function testCtrl(usersService, testResolve, usersSharedDataService, $interval, 
 
 	vm.checkLogIn = function() {
 		loginTimeout = $timeout(function(){
-			if (vm.currentPath === ('/afterLogin/' + vm.user.userName)) {
+			if (vm.currentPath === ('/afterLogin/' + vm.userShared.userName)) {
 				//We check if the shared user password and the user password are the same
 				console.log("======CHECKING LOG IN=========");
 				if (vm.user.password === vm.userShared.password) {
@@ -193,6 +197,10 @@ function testCtrl(usersService, testResolve, usersSharedDataService, $interval, 
 			};
 		}, 300);
 		
+	}
+
+	vm.setShowEventResult = function(x) {
+		vm.showEventResult = x;
 	}
 
 

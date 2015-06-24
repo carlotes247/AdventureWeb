@@ -21,6 +21,7 @@
               </a>
               <li><a ng-href="#/" volume-hover="0.2" ng-audio-hover="audio/button-4.mp3" ng-audio="audio/button-3.mp3"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
               <li><a ng-href="#/howToPlay" volume-hover="0.2" ng-audio-hover="audio/button-4.mp3" ng-audio="audio/button-3.mp3"> <span class="glyphicon glyphicon-tower" aria-hidden="true"></span> How To Play</a></li>
+              <li><a ng-href="#/ranking" ng-click="isCollapsed = !isCollapsed" volume-hover="0.2" ng-audio-hover="audio/button-4.mp3" ng-audio="audio/button-3.mp3"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ranking</a></li>
               <li><a ng-href="#/about" volume-hover="0.2" ng-audio-hover="audio/button-4.mp3" ng-audio="audio/button-3.mp3"> <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> About</a></li>
               <li dropdown dropdown-append-to-body>
                 <a volume-hover="0.2" ng-audio-hover="audio/button-4.mp3" ng-audio="audio/button-3.mp3" class="dropdown-toggle" dropdown-toggle>
@@ -30,14 +31,14 @@
                     <input class='form-control' type=range min=0 max=1 step=0.01 ng-model='audio.volume'>
                   </ul>
               </li>
-              <li><button type="button" class="btn btn-info" ng-click="nv.updateLoggedIn()">Update NavBar vars</button></li>
+              
                            
             </ul>
             <ul class="nav navbar-nav pull-right">
               <li><a ng-href="#/login" class="pull-right" volume-hover="0.2" ng-audio-hover="audio/button-4.mp3" ng-audio="audio/button-3.mp3"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Log In</a></li>
-              <li class="centered"><button ng-controller="RouteCtrl as rt" ng-click="rt.go('/signUp')" type="button" class="btn btn-warning" volume-hover="0.2" ng-audio-hover="audio/button-4.mp3">
+              <li class="centered"><a ng-controller="RouteCtrl as rt" ng-click="rt.go('/signUp')" type="button" class="btn btn-warning" volume-hover="0.2" ng-audio-hover="audio/button-4.mp3">
               <span class="glyphicon glyphicon-plus" aria-hidden="true" ></span> Sign Up
-              </button></li> 
+              </a></li> 
             </ul>
           </nav>
 
@@ -48,8 +49,9 @@
                   Adventure Web
               </a>
               <li><a ng-href="#/userMain" volume-hover="0.2" ng-audio-hover="audio/button-4.mp3" ng-audio="audio/button-3.mp3"> <span class="glyphicon glyphicon glyphicon-user" aria-hidden="true"></span> Player</a></li>
-              <li><a ng-href="#/exploration" volume-hover="0.2" ng-audio-hover="audio/button-4.mp3" ng-audio="audio/button-3.mp3"> <span class="glyphicon glyphicon-tree-conifer" aria-hidden="true"></span> Exploration</a></li>
+              <li><a ng-href="#/exploration" ng-click="open('lg'); vm.addGold(-50)" ng-disabled="vm.gold <= 50" volume-hover="0.2" ng-audio-hover="audio/button-4.mp3" ng-audio="audio/button-3.mp3"> <span class="glyphicon glyphicon-tree-conifer" aria-hidden="true"></span> Exploration</a></li>
               <li><a ng-href="#/howToPlay" volume-hover="0.2" ng-audio-hover="audio/button-4.mp3" ng-audio="audio/button-3.mp3"> <span class="glyphicon glyphicon-tower" aria-hidden="true"></span> How To Play</a></li>
+              <li><a ng-href="#/ranking" ng-click="isCollapsed = !isCollapsed" volume-hover="0.2" ng-audio-hover="audio/button-4.mp3" ng-audio="audio/button-3.mp3"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ranking</a></li>
               <li><a ng-href="#/about" volume-hover="0.2" ng-audio-hover="audio/button-4.mp3" ng-audio="audio/button-3.mp3"> <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> About</a></li>
               <li dropdown dropdown-append-to-body>
                 <a volume-hover="0.2" ng-audio-hover="audio/button-4.mp3" ng-audio="audio/button-3.mp3" class="dropdown-toggle" dropdown-toggle>
@@ -59,7 +61,7 @@
                     <input class='form-control' type=range min=0 max=1 step=0.01 ng-model='audio.volume'>
                   </ul>
               </li>
-              <li><button type="button" class="btn btn-info" ng-click="nv.updateLoggedIn()">Update NavBar vars</button></li>
+              
                            
             </ul>
             <ul class="nav navbar-nav pull-right">
@@ -72,6 +74,7 @@
               <ul class="nav navbar-nav">                              
                   <li><a ng-href="#/" volume-hover="0.2" ng-audio-hover="audio/button-4.mp3" ng-audio="audio/button-3.mp3"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
                   <li><a ng-href="#/howToPlay" volume-hover="0.2" ng-audio-hover="audio/button-4.mp3" ng-audio="audio/button-3.mp3"> <span class="glyphicon glyphicon-tower" aria-hidden="true"></span> How To Play</a></li>
+                  <li><a ng-href="#/ranking" ng-click="isCollapsed = !isCollapsed" volume-hover="0.2" ng-audio-hover="audio/button-4.mp3" ng-audio="audio/button-3.mp3"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ranking</a></li>
                   <li><a ng-href="#/about" volume-hover="0.2" ng-audio-hover="audio/button-4.mp3" ng-audio="audio/button-3.mp3"> <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> About</a></li>
                   <li class="divider"></li>
                   <li>
@@ -94,7 +97,10 @@
                   <li class="divider"></li>
                   <li><a ng-href="#/userMain" ng-click="isCollapsed = !isCollapsed" volume-hover="0.2" ng-audio-hover="audio/button-4.mp3" ng-audio="audio/button-3.mp3"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
                   <li class="divider"></li>
+                  <li><a ng-href="#/exploration" ng-click="open('lg'); vm.addGold(-50)" ng-disabled="vm.gold <= 50" volume-hover="0.2" ng-audio-hover="audio/button-4.mp3" ng-audio="audio/button-3.mp3"> <span class="glyphicon glyphicon-tree-conifer" aria-hidden="true"></span> Exploration</a></li>
+                  <li class="divider"></li>
                   <li><a ng-href="#/howToPlay" ng-click="isCollapsed = !isCollapsed" volume-hover="0.2" ng-audio-hover="audio/button-4.mp3" ng-audio="audio/button-3.mp3"><span class="glyphicon glyphicon-tower" aria-hidden="true"></span> How To Play</a></li>
+                  <li><a ng-href="#/ranking" ng-click="isCollapsed = !isCollapsed" volume-hover="0.2" ng-audio-hover="audio/button-4.mp3" ng-audio="audio/button-3.mp3"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ranking</a></li>
                   <li><a ng-href="#/about" ng-click="isCollapsed = !isCollapsed" volume-hover="0.2" ng-audio-hover="audio/button-4.mp3" ng-audio="audio/button-3.mp3"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> About</a></li>
                   <li class="divider"></li>
                   <li>

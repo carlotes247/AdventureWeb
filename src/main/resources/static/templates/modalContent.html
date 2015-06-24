@@ -5,18 +5,41 @@
 	        </div>
 	        <div class="modal-body">
 	            <ul>
-	                <li ng-repeat="item in items">
-	                    <a ng-click="selected.item = item">{{ item }}</a>
+	                <li ng-repeat="event in events | randomize ">
+	                    <a ng-click="selected.event = event">{{ event.eventName }}</a>
 	                </li>
 	            </ul>
-	            Selected: <b>{{ selected.item }}</b>
+	            <b>{{ selected.event.eventContent }}</b>
 	        </div>
 	        <div class="modal-footer">
-	            <button class="btn btn-primary" ng-click="ok()">OK</button>
-	            <button class="btn btn-warning" ng-click="cancel()"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Go Back To the City</button>
+	            <button class="btn btn-primary" ng-click="ok();"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Deal with it</button>
+	            <button class="btn btn-warning" ng-click="cancel()"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Run Away</button>
 	        </div>
 	    </script>
 
-	    <button class="btn btn-default" ng-click="open('lg'); vm.removeGold(50)">Go Exploring (50 gold)</button>
-	    <div ng-show="selected">Selection from a modal: {{ selected }}</div>
+	    <div>
+	    	
+	    		<p></p>
+
+			    <button class="btn btn-success" ng-click="open('lg'); vm.addGold(-50)" ng-disabled="vm.gold <= 50"><span class="glyphicon glyphicon-tree-conifer" aria-hidden="true"></span> Go Exploring (-50 gold)</button>
+			    <p></p>
+			    <div ng-show="selected" class="container">
+			    <div class="panel panel-primary">
+			    	  <div class="panel-heading">
+			    			<h3 class="panel-title">{{ selected.eventName }}</h3>
+			    	  </div>
+			    	  <div class="panel-body">
+			    			<h3>{{ selected.eventContent }}</h3>
+			    			<h4>What do you want to do?</h4>
+			    			<p>
+			    				<button class="btn btn-primary" ng-click="vm.addGold(selected.eventGold); vm.setShowEventResult(selected.eventContent + ' And you obtain: ' + selected.eventGold + ' Gold'); selected = clear(selected)"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Interact</button>
+			            		<button class="btn btn-warning" ng-click=""><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Run Away</button>
+			            </p>
+			    	  </div>
+			    </div>
+
+
+	    </div>
+
+	    
 </div>

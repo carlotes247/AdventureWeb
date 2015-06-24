@@ -51,3 +51,10 @@ body {
 .errorStyle {
   color:red;
 }
+
+.g-item{
+
+    width: 50vw;
+    height: 50vh;
+    
+}

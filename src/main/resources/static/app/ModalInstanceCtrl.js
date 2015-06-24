@@ -1,16 +1,16 @@
 angular.module('app').controller('ModalInstanceCtrl', ModalInstanceCtrl);
 
-ModalInstanceCtrl.$inject = ["$scope" , "$modalInstance", "items"];
+ModalInstanceCtrl.$inject = ["$scope" , "$modalInstance", "events" , "$filter"];
 
-function ModalInstanceCtrl ($scope, $modalInstance, items) {
+function ModalInstanceCtrl ($scope, $modalInstance, events, $filter) {
 
-  $scope.items = items;
+  $scope.events = $filter('randomize')(events);
   $scope.selected = {
-    item: $scope.items[0]
+    event: $scope.events
   };
 
   $scope.ok = function () {
-    $modalInstance.close($scope.selected.item);
+    $modalInstance.close($scope.selected.event);
   };
 
   $scope.cancel = function () {

@@ -1,9 +1,5 @@
 <div class="well">
-	<p>efdweaf</p>
-	<p>{{vm.userShared}}</p>
-	<p>{{vm.equals(vm.user.userName, vm.userShared.userName)}}</p>
-</div>
-<form name="myForm" class="form-signin" ng-submit="vm.setUserShared(vm.userName, vm.password);rt.go('/afterLogin/' + vm.userName)" ng-controller="RouteCtrl as rt">
+	<form name="myForm" class="form-signin" ng-submit="vm.setUserShared(vm.userName, vm.password);rt.go('/afterLogin/' + vm.userName)" ng-controller="RouteCtrl as rt">
         <h2 class="form-signin-heading">Please log in</h2>
 
         <label for="inputUser" class="sr-only">UserName</label>
@@ -29,3 +25,4 @@
         <div >
         <button class="btn btn-lg btn-primary btn-block" type="submit" value="Submit User" ng-value="myForm.user.$valid && myForm.password.$valid" >Log in {{vm.userName}}</button>
       </form>
+</div>

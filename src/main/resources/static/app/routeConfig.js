@@ -9,6 +9,20 @@ function RouteConfig($routeProvider) {
 		templateUrl: "templates/about.html"});
 	$routeProvider.when('/howToPlay', {
 		templateUrl: "templates/howToPlay.html"});
+	$routeProvider.when('/ranking', {
+		templateUrl: "templates/ranking.html",
+		controller: 'testCtrl',
+		controllerAs: 'vm', 
+		resolve: {
+			testResolve: function(usersService, imagesService) {
+				var users = usersService.getUsers();
+				
+				//var images = imagesService.getImages();
+				//console.log(images);
+				return this;
+			}
+		}
+	});
 	$routeProvider.when('/signUp', {
 		templateUrl: "templates/userSingUp.html",
 		controller: 'testCtrl',

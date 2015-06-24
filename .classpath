@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="es/sidelab/holamundo/SesionController.java" kind="src" output="target/classes" path="src/main/java">
+	<classpathentry excluding="es/sidelab/holamundo/SesionController.java|es/sidelab/holamundo/CustomerEntity.java|es/sidelab/holamundo/GreetingController.java|es/sidelab/holamundo/Player.java|es/sidelab/holamundo/TeamRepositoryInterface.java|es/sidelab/holamundo/TeamRestController.java|es/sidelab/holamundo/TeamsService.java|es/sidelab/holamundo/Team.java|es/sidelab/holamundo/CustomerRepositoryInterface.java|es/sidelab/holamundo/DataBaseUsageController.java" kind="src" output="target/classes" path="src/main/java">
 		<attributes>
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>

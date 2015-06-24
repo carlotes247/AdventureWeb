@@ -1,44 +1,4 @@
-<div class="container">
-<!-- User List -->
-<div class="well">
-<p>Users are: </p>
-<ul>
-
-    
-        <a>{{ user }}</a>
-        <div class="panel panel-default" >
-        <!-- Default panel contents -->
-        <div class="panel-heading">Ranking users</div>
-                <div class="panel-body">
-                    <p>Body</p>
-                </div>
-        
-                <!-- Table -->
-                <table class="table" ng-repeat="user in vm.users">
-                    <thead>
-                        <tr>
-                            <th>Player: {{ user.userName }}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td> Gold: {{ user.gold }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-        </div>
-    
-</ul>
-<p>{{vm.userName}}</p><p>{{vm.check}}</p>
-</div>
-
-
-<div class="modal-body">
-                <ul>
-                    <li ng-repeat="item in items">
-                        <a ng-click="selected.item = item">{{ item }}</a>
-                    </li>
-                </ul>
+<div class="container well" ng-controller="AudioCtrl">
 
 <!-- Login Form -->
 	<form class="form-signin" name="myForm" ng-submit="vm.setUserShared(vm.userName, vm.password);rt.go('/afterLogin/' + vm.userName)" ng-controller="RouteCtrl as rt">
@@ -56,7 +16,7 @@
 		<span ng-show="myForm.password.$error.required"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Password is required.</span>
 		</span>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit" value="Submit User" ng-value="myForm.user.$valid && myForm.password.$valid">Log in {{vm.userName}}</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" value="Submit User" ng-value="myForm.user.$valid && myForm.password.$valid" volume-hover="0.2" ng-audio-hover="audio/button-4.mp3" ng-audio="audio/button-3.mp3">Log in {{vm.userName}}</button>
         </div>
       </form>
 </div>

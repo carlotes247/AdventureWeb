@@ -1,4 +1,5 @@
-<form name="myForm" class="form-signin" ng-submit="vm.setUserShared(vm.userName, vm.password);rt.go('/afterSignUp/' + vm.userName)" ng-controller="RouteCtrl as rt">
+<div class="well">
+	<form name="myForm" class="form-signin" ng-submit="vm.setUserShared(vm.userName, vm.password);rt.go('/afterSignUp/' + vm.userName)" ng-controller="RouteCtrl as rt">
         <h2 class="form-signin-heading">Please Sign Up</h2>
 
         <label for="inputUser" class="sr-only">UserName</label>
@@ -24,3 +25,4 @@
         <div >
         <button class="btn btn-lg btn-primary btn-block" type="submit" value="Submit User" ng-value="myForm.user.$valid && myForm.password.$valid">Create user {{vm.userName}}</button>
       </form>
+</div>
