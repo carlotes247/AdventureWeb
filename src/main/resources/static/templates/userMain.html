@@ -1,4 +1,6 @@
+<!-- We check if for any reason we have logged out -->
 <div class="well" ng-if="!vm.userShared.userName" ng-controller="RouteCtrl as rt">{{rt.go('/login')}}</div>
+<!-- The main view of our player! -->
 <div class="jumbotron">
 		<div class="container">
 			<h1>Welcome back, {{vm.userShared.userName}}!</h1>
@@ -8,5 +10,28 @@
 			</p>
 			<button type="button" class="btn btn-primary" ng-click="vm.addGold(1)">Add 1 Gold</button>
 			The gold is: {{vm.gold}}
+		</div>
+
+		<div ng-controller="ModalCtrl" class="container">
+		    <script type="text/ng-template" id="myModalContent.html">
+			        <div class="modal-header">
+			            <h3 class="modal-title">You are Exploring!</h3>
+			        </div>
+			        <div class="modal-body">
+			            <ul>
+			                <li ng-repeat="item in items">
+			                    <a ng-click="selected.item = item">{{ item }}</a>
+			                </li>
+			            </ul>
+			            Selected: <b>{{ selected.item }}</b>
+			        </div>
+			        <div class="modal-footer">
+			            <button class="btn btn-primary" ng-click="ok()">OK</button>
+			            <button class="btn btn-warning" ng-click="cancel()"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Go Back To the City</button>
+			        </div>
+			    </script>
+
+			    <button class="btn btn-default" ng-click="open('lg')">Go Exploring</button>
+			    <div ng-show="selected">Selection from a modal: {{ selected }}</div>
 		</div>
 </div>

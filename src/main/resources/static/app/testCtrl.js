@@ -1,8 +1,8 @@
 angular.module('app').controller('testCtrl', testCtrl);
 
-testCtrl.$inject = [ "usersService" , "testResolve" , "usersSharedDataService", "$interval", "$location", "$scope"];
+testCtrl.$inject = [ "usersService" , "testResolve" , "usersSharedDataService", "$interval", "$location", "$scope" , "$timeout"];
 
-function testCtrl(usersService, testResolve, usersSharedDataService, $interval, $location, $scope) {
+function testCtrl(usersService, testResolve, usersSharedDataService, $interval, $location, $scope, $timeout) {
     var vm = this;
     vm.test = [];
     //vm.test = usersService.getUsers();
@@ -132,6 +132,10 @@ function testCtrl(usersService, testResolve, usersSharedDataService, $interval, 
             $interval.cancel(addingGoldInterval);
             addingGoldInterval = undefined;
           }
+       	if (angular.isDefined(loginTimeout)) {
+       		$timeout.cancel(loginTimeout);
+       		loginTimeout = undefined;
+       	}
 	}
 
 	vm.setLoggedIn = function(x) {
@@ -147,7 +151,7 @@ function testCtrl(usersService, testResolve, usersSharedDataService, $interval, 
 			vm.setLoggedIn(true);
 			vm.updateSharedGold();
 			console.log("THE ROUTE IS THE SAME");
-		} else {
+		} else if (vm.currentPath === '/login' ){
 			vm.setLoggedIn(false);
 		}
 		console.log(vm.loggedIn);
@@ -155,6 +159,29 @@ function testCtrl(usersService, testResolve, usersSharedDataService, $interval, 
 
 	vm.updateSharedGold = function() {
 		usersSharedDataService.getGoldFromServer();
+	}
+
+	vm.pushUserShared = function() {
+		usersSharedDataService.setAllUser(vm.user.userName, vm.user.password, vm.user.gold);
+		console.log("Pushing user to be Shared ===> " + vm.user.userName);
+	}
+
+	vm.checkLogIn = function() {
+		loginTimeout = $timeout(function(){
+			if (vm.currentPath === ('/afterLogin/' + vm.user.userName)) {
+				//We check if the shared user password and the user password are the same
+				console.log("======CHECKING LOG IN=========");
+				if (vm.user.password === vm.userShared.password) {
+					vm.setLoggedIn(true);
+					vm.pushUserShared();
+					$location.path('/userMain');
+				} else {
+					vm.setLoggedIn(false);
+					$location.path('/loginError');
+				}
+			};
+		}, 300);
+		
 	}
 
 
@@ -166,6 +193,7 @@ function testCtrl(usersService, testResolve, usersSharedDataService, $interval, 
 	$scope.$on('$destroy', function() {
           // Make sure that the interval is destroyed too
           vm.stopAddGoldEverySec();
+
      });
 	//vm.getUsers();
 	//vm.check = vm.getUser("Carlos");

@@ -75,6 +75,11 @@ function UsersSharedDataService (usersService) {
 		vm.gold = aux.gold;
 	}
 
+	vm.setAllUser = function(userName, password, gold) {
+		vm.setUserData(userName, password);
+		vm.setGold(gold);
+	}
+
 
 }
 
