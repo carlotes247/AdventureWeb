@@ -1,5 +1,7 @@
 angular.module('app').controller('ModalCtrl', ModalCtrl);
 
+ModalCtrl.$inject = ["$scope" , "$modal", "$log"];
+
 function ModalCtrl ($scope, $modal, $log) {
 
   $scope.items = ['item1', 'item2', 'item3'];

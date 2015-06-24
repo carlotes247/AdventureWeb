@@ -17,6 +17,13 @@
 		}
 	});
 
+	app.directive("modalDirective", function () {
+		return {
+			restrict: 'E',
+			templateUrl: "templates/modalContent.html"
+		}
+	});
+
 	
 
 }) ();

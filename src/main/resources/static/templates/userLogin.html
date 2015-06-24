@@ -1,5 +1,46 @@
 <div class="container">
-<div class="well"><p>Users are: </p><p>{{vm.users}}</p><p>{{vm.userName}}</p><p>{{vm.check}}</p></div>
+<!-- User List -->
+<div class="well">
+<p>Users are: </p>
+<ul>
+
+    
+        <a>{{ user }}</a>
+        <div class="panel panel-default" >
+        <!-- Default panel contents -->
+        <div class="panel-heading">Ranking users</div>
+                <div class="panel-body">
+                    <p>Body</p>
+                </div>
+        
+                <!-- Table -->
+                <table class="table" ng-repeat="user in vm.users">
+                    <thead>
+                        <tr>
+                            <th>Player: {{ user.userName }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td> Gold: {{ user.gold }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+        </div>
+    
+</ul>
+<p>{{vm.userName}}</p><p>{{vm.check}}</p>
+</div>
+
+
+<div class="modal-body">
+                <ul>
+                    <li ng-repeat="item in items">
+                        <a ng-click="selected.item = item">{{ item }}</a>
+                    </li>
+                </ul>
+
+<!-- Login Form -->
 	<form class="form-signin" name="myForm" ng-submit="vm.setUserShared(vm.userName, vm.password);rt.go('/afterLogin/' + vm.userName)" ng-controller="RouteCtrl as rt">
         <h2 class="form-signin-heading">Please log in</h2>
 

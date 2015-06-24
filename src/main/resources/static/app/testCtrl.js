@@ -113,6 +113,17 @@ function testCtrl(usersService, testResolve, usersSharedDataService, $interval, 
 		
 	}
 
+	vm.removeGold = function(gold) {
+		if (vm.getLoggedIn()) {
+			console.log("Removing gold...");
+			//auxGold = vm.gold;
+			vm.gold -= gold;
+			usersSharedDataService.setGold(vm.gold);
+		} else {
+			console.log("Can't remove gold! LogStatus: " + vm.getLoggedIn());
+		};
+	}
+
 	vm.getGold = function() {
 		vm.gold = usersSharedDataService.getGold();
 		return vm.gold;
