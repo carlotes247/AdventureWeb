@@ -7,6 +7,8 @@ function RouteConfig($routeProvider) {
 		templateUrl: "templates/home.html"});
 	$routeProvider.when('/about', {
 		templateUrl: "templates/about.html"});
+	$routeProvider.when('/howToPlay', {
+		templateUrl: "templates/howToPlay.html"});
 	$routeProvider.when('/signUp', {
 		templateUrl: "templates/userSingUp.html",
 		controller: 'testCtrl',
@@ -63,20 +65,6 @@ function RouteConfig($routeProvider) {
 			}
 		}
 	});
-	$routeProvider.when('/userMain', {
-		templateUrl: "templates/userMain.html",
-		controller: 'testCtrl',
-		controllerAs: 'vm', 
-		resolve: {
-			testResolve: function(usersService, $route) {
-				var users = usersService.getUsers();
-				var user = {};
-
-				console.log();
-				return this;
-			}
-		}
-	});
 	$routeProvider.when('/afterSignUp/:id', {
 		templateUrl: "templates/afterSignUp.html",
 		controller: 'testCtrl',
@@ -113,6 +101,34 @@ function RouteConfig($routeProvider) {
 				var users = usersService.getUsers();
 				var user = usersService.getUser();
 
+				return this;
+			}
+		}
+	});
+	$routeProvider.when('/userMain', {
+		templateUrl: "templates/userMain.html",
+		controller: 'testCtrl',
+		controllerAs: 'vm', 
+		resolve: {
+			testResolve: function(usersService, $route) {
+				var users = usersService.getUsers();
+				var user = {};
+
+				console.log();
+				return this;
+			}
+		}
+	});
+	$routeProvider.when('/exploration', {
+		templateUrl: "templates/exploration.html",
+		controller: 'testCtrl',
+		controllerAs: 'vm', 
+		resolve: {
+			testResolve: function(usersService, $route) {
+				var users = usersService.getUsers();
+				var user = {};
+
+				console.log();
 				return this;
 			}
 		}
